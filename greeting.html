@@ -11,7 +11,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 
     <script type="text/babel">
-      ReactDOM.render(<div id="msg">Hello World!!!</div>, document.getElementById('app'));
+      class Greeting extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state={
+            number: 1
+          };
+          this.handleButtonClick = this.handleButtonClick.bind(this);
+        }
+
+        handleButtonClick(){
+          this.setState({
+            number: this.state.number + 1
+          });
+        }
+
+        render() {
+          return (
+            <div>
+              <h4>{this.props.msg}</h4>
+              <button onClick={this.handleButtonClick}>
+                Add one
+              </button>
+              {this.state.number}
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(
+        <Greeting msg='Hello from props' />, document.getElementById('app'));
     </script>
   </body>
 </html>
